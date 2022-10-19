@@ -27,14 +27,15 @@ const Auth = () => {
 
   const error_back = useSelector((state) => state.user.error);
   const token = useSelector((state) => state.user.token);
-
+  console.log("token",token)
   const handleResponseGoogle = (response) => {
     console.log('jwt =>' + response.credential)
     localStorage.setItem('user_google', JSON.stringify(jwt_decode(response.credential)))
   }
   useEffect(() => {
     google.accounts.id.initialize({
-      client_id: '2890899428-u9cjg4ihv7m8i9es40sb2quegdbqm0c3.apps.googleusercontent.com',
+      // client_id: '2890899428-u9cjg4ihv7m8i9es40sb2quegdbqm0c3.apps.googleusercontent.com',
+      client_id: import.meta.env.VITE_GOGLE_BACK,
       callback: handleResponseGoogle
     })
 

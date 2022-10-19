@@ -2,8 +2,8 @@ import axios from "axios";
 
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS"
 
-axios.defaults.baseURL = "http://localhost:3001";
-
+// axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = import.meta.env.VITE_API;
 export const getAllOrders = () => {
   return async (dispatch) => {
     try {

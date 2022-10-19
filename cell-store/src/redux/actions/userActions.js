@@ -13,8 +13,8 @@ export const RESPONSE_CHANGE_PASSWORD_FORGOT =
   "RESPONSE_CHANGE_PASSWORD_FORGOT";
 export const RESPONSE_NEW_PASSWORD = "RESPONSE_NEW_PASSWORD";
 
-axios.defaults.baseURL = "http://localhost:3001";
-
+// axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = import.meta.env.VITE_API;
 export const userRegister = (user) => {
   return async (dispatch) => {
     try {
@@ -58,16 +58,18 @@ export const getUserData = () => {
       const user = await axios.get("/perfil", {
         headers: {
           Bearer: localStorage.getItem("token"),
+       
+        
         },
       });
-
+        //    Bearer: JSON.parse(localStorage.getItem("token")),
       localStorage.setItem("user", JSON.stringify(user.data));
       return dispatch({
         type: USER,
         payload: user.data,
       });
     } catch (error) {
-      console.log(error);
+      console.log("error",error);
     }
   };
 };
